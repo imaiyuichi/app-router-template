@@ -2,6 +2,10 @@
 export const URL_ORIGIN = '/';
 export const URL_ABOUT = '/about';
 
+// API
+export const API_KEY =
+  'https://public-api.wordpress.com/rest/v1.1/sites/test85446.wordpress.com/posts';
+
 // GTM
 export const ID_GTM = 'GTM-SAMPLE';
 
