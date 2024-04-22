@@ -1,12 +1,10 @@
 import Image from 'next/image';
-import { getPosts } from '@/libs/apis';
+import FetchTest from '@/components/ui/FetchTest';
 
 const templatesAbout = async () => {
-  const { posts } = await getPosts();
-
   return (
     <main>
-      <h1 className="text-3xl">通常のfeachをしています</h1>
+      <h1 className="text-3xl">Aboutページです</h1>
       <div className="m-auto w-[800px]">
         <Image
           src="/images/thumbnail-mv.jpg"
@@ -15,14 +13,7 @@ const templatesAbout = async () => {
           height={400}
         />
       </div>
-      <ul>
-        {posts.map((post: any) => (
-          <li key={post.ID}>
-            <h2>{post.title}</h2>
-            <p>{post.content}</p>
-          </li>
-        ))}
-      </ul>
+      <FetchTest />
     </main>
   );
 };

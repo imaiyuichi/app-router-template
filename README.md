@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# lig-nextjs-sharp
 
-## Getting Started
+## フロントエンド使用技術
 
-First, run the development server:
+- Next.js (Using Pages Router / SSG & CSR)
+- CSS Modules
+- TypeScript
+
+## CMS
+
+- WordPress（headless）
+
+## ローカル開発環境構築手順
+
+Node.js >=20.0.0
+
+### env ファイルの作成
+
+.env.sample に下記の値を登録してください。`NEXT_PUBLIC`の接頭辞がつく環境変数は CSR のための変数です。
+
+- SERVICE_DOMAIN
+- API_KEY
+- NEXT_PUBLIC_SERVICE_DOMAIN
+- NEXT_PUBLIC_API_KEY
+- NEXT_PUBLIC_SITE_URL
+
+.env.sample を複製して .env を作成してください。
+
+### パッケージインストール
+
+```bash
+npm ci
+```
+
+### 起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## フロントエンド コーディング規約
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### スタイリングについて
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+CSS Modules を使用してスタイリングを行います。
 
-## Learn More
+- CSS Modules の特性上、モディファイアをクラス名として扱うのが面倒なため、data 属性を利用することを推奨します。(ex. data-color="hoge" etc...)
+- コンポーネント名とCSS Modulesのファイル名を揃えてください。
 
-To learn more about Next.js, take a look at the following resources:
+### アクセシビリティ
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 外部サイトを開く場合は`rel="noopener noreferrer"`をつけて基本的には参照元リンク情報を渡さないでください。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+<a href="https://liginc.co.jp/" target="_blank" rel="noopener noreferrer">
+```
 
-## Deploy on Vercel
+## Linter
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Lint は`husky`を使用してプリコミット時に実行します。以下の vscode プラグインをインストールすると vscode 保存時にも Lint が実行されます。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [markuplint](https://marketplace.visualstudio.com/items?itemName=yusukehirao.vscode-markuplint)
+- [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
+- [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+## 確認したい内容
+
+- use client
+- 今回はcsrを使用するため極力小さなコンポーネント単位で"use client"を使用する
+- "use client"を使用するとpreレンダリングされない
+- そもそも書き方あってる？
+
+- WordPressのrest api
+  https://ja.wp-api.org/
